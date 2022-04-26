@@ -9,11 +9,34 @@
 
 # Creación usuario ADMIN y usuario VET de pruebas
 
-user_admin = User.new(email: "admin@gatito.cl", password: "123456", password_confirmation: "123456", role: "admin")
-user_admin.save!
+user_admin = User.create(email: "admin@gatito.cl", password: "123456", password_confirmation: "123456", role: "admin")
 
-user_vet = User.new(email: "veterinario@gatito.cl", password: "123456", password_confirmation: "123456", role: "vet")
-user_vet.save!
+user_vet = User.create(email: "veterinario@gatito.cl", password: "123456", password_confirmation: "123456", role: "vet")
 
-user_client = User.new(email: "cliente@gatito.cl", password: "123456", password_confirmation: "123456")
-user_client.save!
+user_client = User.create(email: "cliente@gatito.cl", password: "123456", password_confirmation: "123456")
+
+# Creación de mascotas de usuario testing
+
+7.times do
+    species = ["dog", "cat"].sample
+
+    if species == "dog"
+        new_pet = Pet.new(
+            name: Faker::Creature::Dog.name, 
+            age: (rand() * 10).to_i, 
+            weight: (rand() * 4),
+            species: "dog",
+            race: Faker::Creature::Dog.breed
+        )
+    else
+        new_pet = Pet.new(
+            name: Faker::Creature::Cat.name, 
+            age: (rand() * 10).to_i, 
+            weight: (rand() * 4 + 1),
+            species: "cat",
+            race: Faker::Creature::Cat.breed
+        )
+    end
+
+    user_client.pets << new_pet
+end
