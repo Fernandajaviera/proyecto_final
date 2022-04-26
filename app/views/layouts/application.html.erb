@@ -22,9 +22,13 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><%= link_to "Home", root_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Inicio", root_path, class: "nav-link" %></li>
 
           <% if user_signed_in? %> 
+
+          <li class="nav-item">
+            <%= link_to "Mascotas", pets_path, class: "nav-link" %>
+          </li>
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -38,6 +42,9 @@
           <% else %>
           <li class="nav-item">
             <%= link_to "Iniciar sesión", user_session_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Registrarse", new_user_registration_path, class: "nav-link" %>
           </li>
 
           <% end %>

@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<div class="text-center">
+  <h1>Mis mascotas</h1>
+  <p><%= link_to 'Registrar nueva mascota', new_pet_path %></p>
+</div>
+
+<div class="py-5">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</td>
+        <th scope="col">Edad</td>
+        <th scope="col">Peso</td>
+        <th scope="col">Especie</td>
+        <th scope="col">Raza</td>
+        
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @pets.each do |pet| %>
+        <tr>
+          <td><%= pet.name %></td>
+          <td><%= pet.age %></td>
+          <td><%= pet.weight %></td>
+          <td><%= pet.species %></td>
+          <td><%= pet.race %></td>
+          <td><%= link_to 'Editar', edit_pet_path(pet) %></td>
+          <td><%= link_to 'Eliminar', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
