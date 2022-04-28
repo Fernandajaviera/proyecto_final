@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2022_04_28_170244) do
 
   create_table "appointments", force: :cascade do |t|
     t.datetime "date"
-    t.string "description"
+    t.string "description", default: ""
     t.boolean "is_active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -4,7 +4,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments or /appointments.json
   def index
-    @appointments = current_user.appointments
+    @pets = current_user.pets
   end
 
   # GET /appointments/1 or /appointments/1.json
@@ -15,6 +15,7 @@ class AppointmentsController < ApplicationController
   def new
     @appointment = Appointment.new
     @pets = current_user.pets
+    @vets = User.where(role: "vet")
   end
 
   # GET /appointments/1/edit
@@ -24,10 +25,11 @@ class AppointmentsController < ApplicationController
   # POST /appointments or /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
-    pet = Pet.find(params[:pet])
+    pet = Pet.find(params[:pet_id])
+    user = User.find(params[:user_id])
 
     pet.appointments << @appointment
-    current_user.appointments << @appointment
+    user.appointments << @appointment
 
     respond_to do |format|
       if @appointment.save

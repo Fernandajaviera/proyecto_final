@@ -31,9 +31,6 @@
           <li class="nav-item">
             <%= link_to "Mascotas", pets_path, class: "nav-link" %>
           </li>
-          <% end %>
-
-          <% if current_user.role == "vet" %>
           <li class="nav-item">
             <%= link_to "Horas médicas", appointments_path, class: "nav-link" %>
           </li>
