@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2022-04-27 20:30:04
+  description: MyString
+  pets: one
+  users: one
+
+two:
+  date: 2022-04-27 20:30:04
+  description: MyString
+  pets: two
+  users: two

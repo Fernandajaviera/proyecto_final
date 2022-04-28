@@ -10,13 +10,11 @@
 # Creación usuario ADMIN y usuario VET de pruebas
 
 user_admin = User.create(email: "admin@gatito.cl", password: "123456", password_confirmation: "123456", role: "admin")
-
 user_vet = User.create(email: "veterinario@gatito.cl", password: "123456", password_confirmation: "123456", role: "vet")
-
 user_client = User.create(email: "cliente@gatito.cl", password: "123456", password_confirmation: "123456")
 
-# Creación de mascotas de usuario testing
 
+# Creación de mascotas de usuario testing
 7.times do
     species = ["dog", "cat"].sample
 
