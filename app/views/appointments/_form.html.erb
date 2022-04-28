@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="mb-3">
+    <%= form.label :pet_id, class: "form-label" %>
+    <%= select_tag "pet", options_from_collection_for_select(@pets, "id", "name"), class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
     <%= form.label :date, class: "form-label" %>
     <%= form.date_field :date, class: "form-control" %>
   </div>

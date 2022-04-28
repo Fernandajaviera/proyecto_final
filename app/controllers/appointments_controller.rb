@@ -1,4 +1,5 @@
 class AppointmentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_appointment, only: %i[ show edit update destroy ]
 
   # GET /appointments or /appointments.json
@@ -23,6 +24,9 @@ class AppointmentsController < ApplicationController
   # POST /appointments or /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
+    pet = Pet.find(params[:pet])
+
+    pet.appointments << @appointment
     current_user.appointments << @appointment
 
     respond_to do |format|

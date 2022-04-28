@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_28_003004) do
+ActiveRecord::Schema.define(version: 2022_04_28_170244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,10 +19,10 @@ ActiveRecord::Schema.define(version: 2022_04_28_003004) do
     t.datetime "date"
     t.string "description"
     t.boolean "is_active", default: true
-    t.bigint "pet_id"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "pet_id"
     t.index ["pet_id"], name: "index_appointments_on_pet_id"
     t.index ["user_id"], name: "index_appointments_on_user_id"
   end
@@ -52,6 +52,4 @@ ActiveRecord::Schema.define(version: 2022_04_28_003004) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "appointments", "pets"
-  add_foreign_key "appointments", "users"
 end
