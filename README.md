@@ -1,24 +1,45 @@
-# README
+# Proyecto Veterinaria
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Instalación Heroku
 
-Things you may want to cover:
+* Clonar repositorio
+`git clone https://github.com/Fernandajaviera/proyecto_final/`
 
-* Ruby version
+* Instalar Heroku-cli
+`curl https://cli-assets.heroku.com/install-ubuntu.sh | sh`
 
-* System dependencies
+* Iniciar sesión en Heroku
+`heroku login`
 
-* Configuration
+* Configurar app de heroku con repositorio
+`heroku git:remote -a proyectofinalfernanda`
 
-* Database creation
+* Push de proyecto hacia Heroku
+`git push heroku main`
 
-* Database initialization
+* Ejecutar migraciones y seeds
+`heroku run rake db:migrate`
+`heroku run rake db:seed`
 
-* How to run the test suite
+* Añadir subdominio
+`heroku domains:add fer.chaucha.cl`
 
-* Services (job queues, cache servers, search engines, etc.)
+## Instalación local (testing)
 
-* Deployment instructions
+* Clonar repositorio
+`git clone https://github.com/Fernandajaviera/proyecto_final/`
 
-* ...
+* Instalar paquetes de Gemfile
+`bundle install`
+
+* Crear base de datos
+`rails db:create`
+
+* Ejecutar migraciones
+`rails db:migrate`
+
+* Cargar seeds de prueba
+`rails db:seed`
+
+* Correr servidor de rails
+`rails s`
