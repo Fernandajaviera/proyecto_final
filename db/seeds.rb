@@ -11,11 +11,11 @@
 
 user_admin = User.create!(email: "admin@gatito.cl", password: "123456", password_confirmation: "123456", role: "admin")
 user_vet = User.create!(email: "veterinario@gatito.cl", password: "123456", password_confirmation: "123456", role: "vet", likes: 10)
-user_vet = User.create!(email: "practicante@gatito.cl", password: "123456", password_confirmation: "123456", role: "vet", likes: 4)
+user_vet_practicante = User.create!(email: "practicante@gatito.cl", password: "123456", password_confirmation: "123456", role: "vet", likes: 4)
 user_client = User.create!(email: "cliente@gatito.cl", password: "123456", password_confirmation: "123456")
 
 # Creación de mascotas de usuario testing
-7.times do
+20.times do
     species = ["dog", "cat"].sample
 
     if species == "dog"
@@ -24,7 +24,8 @@ user_client = User.create!(email: "cliente@gatito.cl", password: "123456", passw
             age: (rand() * 10).to_i, 
             weight: (rand() * 4).round(1),
             species: "dog",
-            race: Faker::Creature::Dog.breed
+            race: Faker::Creature::Dog.breed,
+            created_at: rand(1.months).seconds.ago
         )
     else
         new_pet = Pet.new(
@@ -32,10 +33,16 @@ user_client = User.create!(email: "cliente@gatito.cl", password: "123456", passw
             age: (rand() * 10).to_i, 
             weight: (rand() * 4 + 1).round(1),
             species: "cat",
-            race: Faker::Creature::Cat.breed
+            race: Faker::Creature::Cat.breed,
+            created_at: rand(1.months).seconds.ago
         )
     end
 
     user_client.pets << new_pet
     new_pet.save
+
+    new_appointment = Appointment.new(date: rand(1.months).seconds.ago)
+    new_pet.appointments << new_appointment
+    [user_vet, user_vet_practicante].sample.appointments << new_appointment
+
 end

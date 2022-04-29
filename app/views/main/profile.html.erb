@@ -1,0 +1,9 @@
+<div class="text-center">
+  <h1>Perfil de <%= current_user.email %></h1>
+
+  <h4 class="pt-3">Mascotas creadas por día</h4>
+  <%= column_chart current_user.pets.group("DATE(created_at)").count %>
+  
+  <h4 class="pt-3">Ranking de Veterinarios</h4>
+  <%= pie_chart User.where(role: "vet").pluck(:email, :likes) %>
+</div>

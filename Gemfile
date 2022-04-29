@@ -5,6 +5,8 @@ ruby '2.6.8'
 
 gem 'devise'
 gem 'faker'
+gem 'chartkick'
+gem 'mailgun-ruby', '~>1.2.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.7'

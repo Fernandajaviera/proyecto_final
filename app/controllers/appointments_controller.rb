@@ -44,6 +44,15 @@ class AppointmentsController < ApplicationController
     pet.appointments << @appointment
     user.appointments << @appointment
 
+    mg_client = Mailgun::Client.new 'a7cacd51f2f6048e643de750bd0a8b6f-53ce4923-0b35fef0'
+    message_params =  { from: 'admin@sandbox2509015e9aa44f2e934d416be1905cd6.mailgun.org',
+                        to: user.email,
+                        subject: 'Veterinaria virtual - Nueva hora médica',
+                        text: 'Hola veterinario, se ha asignado una nueva hora médica para el día ' + @appointment.date.strftime("%d-%m-%Y") + ' con la mascota ' + pet.name
+                      }
+
+    mg_client.send_message 'sandbox2509015e9aa44f2e934d416be1905cd6.mailgun.org', message_params
+
     respond_to do |format|
       if @appointment.save
         format.html { redirect_to appointments_url, notice: "Appointment was successfully created." }
@@ -57,6 +66,17 @@ class AppointmentsController < ApplicationController
 
   # PATCH/PUT /appointments/1 or /appointments/1.json
   def update
+    pet = Pet.find(params[:id])
+
+    mg_client = Mailgun::Client.new 'a7cacd51f2f6048e643de750bd0a8b6f-53ce4923-0b35fef0'
+    message_params =  { from: 'admin@sandbox2509015e9aa44f2e934d416be1905cd6.mailgun.org',
+                        to: "heellxz@gmail.com",
+                        subject: 'Veterinaria virtual - Hora médica actualizada',
+                        text: 'Hola, se ha actualizado los datos de la hora médica de ' + pet.name 
+                      }
+
+    mg_client.send_message 'sandbox2509015e9aa44f2e934d416be1905cd6.mailgun.org', message_params
+
     respond_to do |format|
       if @appointment.update(appointment_params)
         format.html { redirect_to appointments_url, notice: "Appointment was successfully updated." }
