@@ -2,7 +2,10 @@
 
 <div class="text-center">
   <h1>Mis horas médicas</h1>
-  <p><%= link_to 'Registrar nueva hora', new_appointment_path %></p>
+
+  <% if current_user.role == "client" %>
+    <p><%= link_to 'Registrar nueva hora', new_appointment_path %></p>
+  <% end %>
 </div>
 
 <% if current_user.role == "client" %>
@@ -30,7 +33,7 @@
             Pendiente
             <% end %>
           </td>
-          <td><%= link_to 'Detalle', appointment %></td>
+          <td><% if appointment.is_active %><%= link_to 'Detalle', appointment %><% end %></td>
           <td><%= link_to 'Cancelar', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
         <% end %>

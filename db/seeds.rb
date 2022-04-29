@@ -21,7 +21,7 @@ user_client = User.create!(email: "cliente@gatito.cl", password: "123456", passw
         new_pet = Pet.new(
             name: Faker::Creature::Dog.name, 
             age: (rand() * 10).to_i, 
-            weight: (rand() * 4),
+            weight: (rand() * 4).round(1),
             species: "dog",
             race: Faker::Creature::Dog.breed
         )
@@ -29,7 +29,7 @@ user_client = User.create!(email: "cliente@gatito.cl", password: "123456", passw
         new_pet = Pet.new(
             name: Faker::Creature::Cat.name, 
             age: (rand() * 10).to_i, 
-            weight: (rand() * 4 + 1),
+            weight: (rand() * 4 + 1).round(1),
             species: "cat",
             race: Faker::Creature::Cat.breed
         )
