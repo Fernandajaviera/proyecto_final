@@ -14,9 +14,9 @@
     <thead>
       <th scope="col">Nombre de mascota</th>
       <th scope="col">Fecha de atención</th>
-      <th scope="col">Veterinario</th>
+      <th scope="col">Veterinario (likes)</th>
       <th scope="col">Estado</th>
-      <th colspan="2"></th>
+      <th colspan="3"></th>
     </thead>
 
     <tbody>
@@ -25,7 +25,7 @@
         <tr>
           <td><%= appointment.pet.name %></td>
           <td><%= appointment.date.strftime("%d-%m-%Y") %></td>
-          <td><%= appointment.user.email %></td>
+          <td><%= appointment.user.email %> (<%= appointment.user.likes %>)</td>
           <td>
             <% if appointment.is_active %>
             Terminada
@@ -33,8 +33,12 @@
             Pendiente
             <% end %>
           </td>
-          <td><% if appointment.is_active %><%= link_to 'Detalle', appointment %><% end %></td>
-          <td><%= link_to 'Cancelar', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if appointment.is_active %>
+          <td><%= link_to 'Ver detalle', appointment %></td>
+          <td><%= link_to 'Dar like a veterinario', appointments_like_path(user_id: appointment.user.id), method: :post %></td>
+          <% else %>
+            <td><%= link_to 'Cancelar', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
         </tr>
         <% end %>
       <% end %>

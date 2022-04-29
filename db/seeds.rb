@@ -10,7 +10,8 @@
 # Creación usuario ADMIN y usuario VET de pruebas
 
 user_admin = User.create!(email: "admin@gatito.cl", password: "123456", password_confirmation: "123456", role: "admin")
-user_vet = User.create!(email: "veterinario@gatito.cl", password: "123456", password_confirmation: "123456", role: "vet")
+user_vet = User.create!(email: "veterinario@gatito.cl", password: "123456", password_confirmation: "123456", role: "vet", likes: 10)
+user_vet = User.create!(email: "practicante@gatito.cl", password: "123456", password_confirmation: "123456", role: "vet", likes: 4)
 user_client = User.create!(email: "cliente@gatito.cl", password: "123456", password_confirmation: "123456")
 
 # Creación de mascotas de usuario testing

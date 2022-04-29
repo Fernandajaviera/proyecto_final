@@ -2,6 +2,15 @@ class AppointmentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_appointment, only: %i[ show edit update destroy ]
 
+  def like
+    puts params
+    vet = User.find(params[:user_id])
+    vet.likes += 1
+    puts vet.likes
+    vet.save
+    redirect_to appointments_url
+  end
+
   # GET /appointments or /appointments.json
   def index
     if current_user.role == "client"

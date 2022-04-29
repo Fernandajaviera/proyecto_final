@@ -8,9 +8,11 @@ Rails.application.routes.draw do
   delete 'admin/delete_user'
   get 'admin/create_vet'
   post 'admin/submit_vet'
-  get 'main/index'
 
+  get 'main/index'
   root 'main#index'
+
+  post 'appointments/like'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
