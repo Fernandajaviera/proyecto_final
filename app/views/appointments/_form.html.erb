@@ -11,20 +11,33 @@
     </div>
   <% end %>
 
-  <div class="mb-3">
-    <%= form.label "Mascota", class: "form-label" %>
-    <%= select_tag :pet_id, options_from_collection_for_select(@pets, "id", "name"), class: "form-control" %>
-  </div>
+  <% if current_user.role == "client" %>
+    <div class="mb-3">
+      <%= form.label "Mascota", class: "form-label" %>
+      <%= select_tag :pet_id, options_from_collection_for_select(@pets, "id", "name"), class: "form-control" %>
+    </div>
 
-  <div class="mb-3">
-    <%= form.label "Veterinario", class: "form-label" %>
-    <%= select_tag :user_id, options_from_collection_for_select(@vets, "id", "email"), class: "form-control" %>
-  </div>
+    <div class="mb-3">
+      <%= form.label "Veterinario", class: "form-label" %>
+      <%= select_tag :user_id, options_from_collection_for_select(@vets, "id", "email"), class: "form-control" %>
+    </div>
 
-  <div class="mb-3">
-    <%= form.label "Fecha de atención", class: "form-label" %>
-    <%= form.date_field :date, class: "form-control" %>
-  </div>
+    <div class="mb-3">
+      <%= form.label "Fecha de atención", class: "form-label" %>
+      <%= form.date_field :date, class: "form-control" %>
+    </div>
+
+  <% else %>
+    <div class="mb-3">
+      <%= form.label "Descripción médica", class: "form-label" %>
+      <%= form.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label "Hora terminada?", class: "form-label" %>
+      <%= form.check_box :is_active, class: "form-check-input" %>
+    </div>
+    <% end %>
 
   <%= form.submit "Submit", class: "btn btn-primary" %>
 

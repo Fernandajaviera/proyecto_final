@@ -3,7 +3,7 @@ class CreateAppointments < ActiveRecord::Migration[5.2]
     create_table :appointments do |t|
       t.timestamp :date
       t.string :description, default: ""
-      t.boolean :is_active, default: true
+      t.boolean :is_active, default: false
 
       t.timestamps
     end

@@ -4,7 +4,11 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments or /appointments.json
   def index
-    @pets = current_user.pets
+    if current_user.role == "client"
+      @pets = current_user.pets
+    else
+      @appointments = current_user.appointments
+    end
   end
 
   # GET /appointments/1 or /appointments/1.json
@@ -73,7 +77,11 @@ class AppointmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def appointment_params
-      params.require(:appointment).permit(:date, :description)
+      if current_user.role == "client"
+        params.require(:appointment).permit(:date, :description)
+      else
+        params.require(:appointment).permit(:description, :is_active)
+      end
     end
 
 end

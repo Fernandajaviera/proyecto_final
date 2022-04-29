@@ -5,6 +5,7 @@
   <p><%= link_to 'Registrar nueva hora', new_appointment_path %></p>
 </div>
 
+<% if current_user.role == "client" %>
 <div class="py-5">
   <table class="table">
     <thead>
@@ -24,9 +25,9 @@
           <td><%= appointment.user.email %></td>
           <td>
             <% if appointment.is_active %>
-              Pendiente
+            Terminada
             <% else %>
-              Terminada
+            Pendiente
             <% end %>
           </td>
           <td><%= link_to 'Detalle', appointment %></td>
@@ -37,3 +38,37 @@
     </tbody>
   </table>
 </div>
+
+<% else %>
+
+<div class="py-5">
+  <table class="table">
+    <thead>
+      <th scope="col">Nombre de mascota</th>
+      <th scope="col">Cliente</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Descripción</th>
+      <th colspan="1"></th>
+    </thead>
+
+    <tbody>
+      <% @appointments.each do |appointment| %>
+        <tr>
+          <td><%= appointment.pet.name %></td>
+          <td><%= appointment.pet.user.email %></td>
+          <td>
+          <% if appointment.is_active %>
+          Terminada
+          <% else %>
+          Pendiente
+          <% end %>
+          </td>
+          <td><%= appointment.description %></td>
+          <td><%= link_to 'Editar hora', edit_appointment_path(appointment) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<% end %>

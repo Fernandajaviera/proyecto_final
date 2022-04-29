@@ -1,4 +1,17 @@
 <p id="notice"><%= notice %></p>
 
+<div class="text-center">
+    <h1 class="pb-5"><%= @appointment.pet.name %></h1>
+
+    <h4>Veterinario</h4>
+    <p class="pb-2"><%= @appointment.user.email %></p>
+    
+    <h4>Fecha de atención</h4>
+    <p class="pb-2"><%= @appointment.date %></p>
+    
+    <h2>Descripción de hora médica</h2>
+    <p class="pb-2"><%= @appointment.description %></p>
+</div>
+
 <%= link_to 'Edit', edit_appointment_path(@appointment) %> |
 <%= link_to 'Back', appointments_path %>
