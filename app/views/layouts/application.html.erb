@@ -40,7 +40,11 @@
               </li>
             <% end %>
             
-            <li class="nav-item"><%= link_to "Horas médicas", appointments_path, class: "nav-link" %></li>
+            <% if current_user.role != "admin" %> 
+              <li class="nav-item"><%= link_to "Horas médicas", appointments_path, class: "nav-link" %></li>
+            <% else %>
+              <li class="nav-item"><%= link_to "Administración", admin_index_path, class: "nav-link" %></li>
+            <% end %>
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -1,0 +1,34 @@
+<%= form_for @user, url: admin_submit_vet_path(@user) do |form| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
+  
+        <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="mb-3">
+        <%= form.label "Correo electrónico", class: "form-label" %>
+        <%= form.text_field :email, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label "Contraseña", class: "form-label" %>
+        <%= form.password_field :password, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label "Confirmar contraseña", class: "form-label" %>
+        <%= form.password_field :password_confirmation, class: "form-control" %>
+    </div>
+
+    <%= form.hidden_field :role, value: "vet" %>
+  
+  <%= form.submit "Submit", class: "btn btn-primary" %>
+
+  <% end %>
+  
